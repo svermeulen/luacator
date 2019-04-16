@@ -14,12 +14,12 @@ class Container
   bindSingleModule: (moduleName, ...) =>
     ids = {...}
     table.insert(ids, @\_parseNameFromModule(moduleName))
-    @\bind(unpack(ids))\toModule(moduleName)\asSingle!
+    @\bind(Util.unpack(ids))\toModule(moduleName)\asSingle!
 
   bindTransientModule: (moduleName, ...) =>
     ids = {...}
     table.insert(ids, @\_parseNameFromModule(moduleName))
-    @\bind(unpack(ids))\toModule(moduleName)\asTransient!
+    @\bind(Util.unpack(ids))\toModule(moduleName)\asTransient!
 
   bind: (...) =>
     Util.assert(not @startedBinding)

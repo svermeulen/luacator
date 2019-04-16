@@ -15,6 +15,8 @@ class Util
 
     return -1
 
+  unpack: table.unpack or unpack
+
   assert: (condition, message) ->
     if not condition
       if message

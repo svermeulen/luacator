@@ -2,8 +2,6 @@
 ScopeBinder = require("luacator.internal.ScopeBinder")
 Util = require("luacator.internal.Util")
 
-unpack = table.unpack or unpack
-
 class FromBinder
   new: (container, identifiers) =>
     @identifiers = identifiers
@@ -24,7 +22,7 @@ class FromBinder
       result = nil
       Util.try
         do: ->
-          result = module(unpack(runtimeArgs))
+          result = module(Util.unpack(runtimeArgs))
         catch: (e) ->
           -- Add some extra info
           error("Error while loading module '#{moduleName}': #{e}")

@@ -21,6 +21,7 @@ do
       end
       return -1
     end,
+    unpack = table.unpack or unpack,
     assert = function(condition, message)
       if not condition then
         if message then

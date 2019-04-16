@@ -12,14 +12,14 @@ do
         ...
       }
       table.insert(ids, self:_parseNameFromModule(moduleName))
-      return self:bind(unpack(ids)):toModule(moduleName):asSingle()
+      return self:bind(Util.unpack(ids)):toModule(moduleName):asSingle()
     end,
     bindTransientModule = function(self, moduleName, ...)
       local ids = {
         ...
       }
       table.insert(ids, self:_parseNameFromModule(moduleName))
-      return self:bind(unpack(ids)):toModule(moduleName):asTransient()
+      return self:bind(Util.unpack(ids)):toModule(moduleName):asTransient()
     end,
     bind = function(self, ...)
       Util.assert(not self.startedBinding)

@@ -1,7 +1,5 @@
 Util = require("luacator.internal.Util")
 
-unpack = table.unpack or unpack
-
 class TransientProvider
   new: (action) =>
     @action = action
@@ -21,4 +19,4 @@ class TransientProvider
     for arg in *runtimeArgs
       table.insert(allArgs, arg)
 
-    return @.action(unpack(allArgs))
+    return @.action(Util.unpack(allArgs))

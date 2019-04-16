@@ -1,6 +1,5 @@
 local ScopeBinder = require("luacator.internal.ScopeBinder")
 local Util = require("luacator.internal.Util")
-local unpack = table.unpack or unpack
 local FromBinder
 do
   local _class_0
@@ -24,7 +23,7 @@ do
         local result = nil
         Util.try({
           ["do"] = function()
-            result = module(unpack(runtimeArgs))
+            result = module(Util.unpack(runtimeArgs))
           end,
           catch = function(e)
             return error("Error while loading module '" .. tostring(moduleName) .. "': " .. tostring(e))

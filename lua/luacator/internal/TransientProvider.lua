@@ -1,5 +1,4 @@
 local Util = require("luacator.internal.Util")
-local unpack = table.unpack or unpack
 local TransientProvider
 do
   local _class_0
@@ -24,7 +23,7 @@ do
         local arg = runtimeArgs[_index_0]
         table.insert(allArgs, arg)
       end
-      return self.action(unpack(allArgs))
+      return self.action(Util.unpack(allArgs))
     end
   }
   _base_0.__index = _base_0
