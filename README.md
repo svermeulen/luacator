@@ -24,14 +24,16 @@ container:bind('Foo'):toModule('luacator.Tests.Foo'):asSingle():withArgs('bob', 
 Resolve dependencies:
 
 ```lua
-qux = container\resolve('Qux')
+qux = container:resolve('Qux')
 ```
 
 Or resolve the factory itself:
 
 ```lua
-quxFactory = container\resolveFactory('Qux')
+quxFactory = container:resolveFactory('Qux')
 ```
 
 Note that in this case it's only useful if it's transient
+
+Note that if you want to use this as service locator pattern you might want to make the container global (`export container`)
 
