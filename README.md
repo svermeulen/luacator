@@ -35,5 +35,17 @@ quxFactory = container:resolveFactory('Qux')
 
 Note that in this case it's only useful if it's transient
 
-Note that if you want to use this as service locator pattern you might want to make the container global (`export container`)
+Note that if you want to use this as service locator pattern you might want to make the container functions global:
+
+```lua
+export Resolve, ResolveMany, ResolveFactory, ResolveManyFactory, Bind
+
+container = require("luacator.Container")()
+
+Bind = container.bind
+Resolve = container.resolve
+ResolveFactory = container.resolveFactory
+ResolveManyFactory = container.resolveManyFactory
+ResolveMany = container.resolveMany
+```
 
