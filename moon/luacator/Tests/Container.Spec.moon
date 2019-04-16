@@ -1,5 +1,6 @@
 
 Container = require("luacator.Container")
+Util = require("luacator.internal.Util")
 
 quxCount = 0
 

@@ -1,5 +1,7 @@
 Util = require("luacator.internal.Util")
 
+unpack = table.unpack or unpack
+
 class TransientProvider
   new: (action) =>
     @action = action

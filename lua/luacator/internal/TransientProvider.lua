@@ -1,4 +1,6 @@
- local Util = require("luacator.internal.Util") local TransientProvider do   local _class_0   local _base_0 = {     withArgs = function(self, ...)
+ local Util = require("luacator.internal.Util")
+
+local unpack = table.unpack or unpack local TransientProvider do   local _class_0   local _base_0 = {     withArgs = function(self, ...)
 
 
 

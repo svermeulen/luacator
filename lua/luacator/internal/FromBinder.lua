@@ -1,6 +1,8 @@
 
 local ScopeBinder = require("luacator.internal.ScopeBinder")
-local Util = require("luacator.internal.Util") local FromBinder do   local _class_0   local _base_0 = {     toInstance = function(self, obj)
+local Util = require("luacator.internal.Util")
+
+local unpack = table.unpack or unpack local FromBinder do   local _class_0   local _base_0 = {     toInstance = function(self, obj)
 
 
 

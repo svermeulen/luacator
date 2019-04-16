@@ -1,5 +1,6 @@
 
 local Container = require("luacator.Container")
+local Util = require("luacator.internal.Util")
 
 local quxCount = 0 local Qux do   local _class_0   local _base_0 = {     bar = function(self) end   }   _base_0.__index = _base_0   _class_0 = setmetatable({     __init = function(self)
 

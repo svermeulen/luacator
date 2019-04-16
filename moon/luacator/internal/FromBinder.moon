@@ -2,6 +2,8 @@
 ScopeBinder = require("luacator.internal.ScopeBinder")
 Util = require("luacator.internal.Util")
 
+unpack = table.unpack or unpack
+
 class FromBinder
   new: (container, identifiers) =>
     @identifiers = identifiers
