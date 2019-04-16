@@ -1,5 +1,5 @@
 
-export Resolve, ResolveMany, ResolveFactory, ResolveManyFactory, Bind
+export Resolve, ResolveMany, ResolveFactory, ResolveManyFactory, Bind, BindTransientModule, BindSingleModule
 
 container = require("luacator.Container")()
 
