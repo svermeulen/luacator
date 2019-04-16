@@ -13,73 +13,73 @@ testSingle = ->
   container = Container()
   container\bind('Qux')\toType(Qux)\asSingle!
 
-  Assert.that(quxCount == 0)
+  Util.assert(quxCount == 0)
   qux = container\resolve('Qux')
-  Assert.that(quxCount == 1)
+  Util.assert(quxCount == 1)
   qux\bar!
 
   qux2 = container\resolve('Qux')
-  Assert.that(quxCount == 1)
-  Assert.isEqual(qux, qux2)
+  Util.assert(quxCount == 1)
+  Util.assert(qux == qux2)
 
 testSingleMultipleIds = ->
   quxCount = 0
   container = Container()
   container\bind('Qux', 'Gorp')\toType(Qux)\asSingle!
 
-  Assert.that(quxCount == 0)
+  Util.assert(quxCount == 0)
   qux = container\resolve('Qux')
-  Assert.that(quxCount == 1)
+  Util.assert(quxCount == 1)
   qux\bar!
 
   qux2 = container\resolve('Gorp')
-  Assert.that(quxCount == 1)
-  Assert.isEqual(qux, qux2)
+  Util.assert(quxCount == 1)
+  Util.assert(qux == qux2)
 
   qux3 = container\resolve('Qux')
-  Assert.that(quxCount == 1)
-  Assert.isEqual(qux, qux3)
+  Util.assert(quxCount == 1)
+  Util.assert(qux == qux3)
 
 testInstance = ->
   quxCount = 0
   qux = Qux()
-  Assert.that(quxCount == 1)
+  Util.assert(quxCount == 1)
 
   container = Container()
   container\bind('Qux')\toInstance(qux)
 
   qux = container\resolve('Qux')
-  Assert.that(quxCount == 1)
+  Util.assert(quxCount == 1)
   qux\bar!
 
   qux2 = container\resolve('Qux')
-  Assert.that(quxCount == 1)
-  Assert.isEqual(qux, qux2)
+  Util.assert(quxCount == 1)
+  Util.assert(qux == qux2)
 
 testToModule = ->
   container = Container()
   container\bind('Foo')\toModule('luacator.Tests.Foo')\asSingle!\withArgs('bob', 'joe')
 
   foo = container\resolve('Foo')
-  Assert.that(foo.arg1 == 'bob')
-  Assert.that(foo.arg2 == 'joe')
+  Util.assert(foo.arg1 == 'bob')
+  Util.assert(foo.arg2 == 'joe')
 
   foo2 = container\resolve('Foo')
-  Assert.isEqual(foo2, foo)
+  Util.assert(foo2 == foo)
 
 testTransient = ->
   quxCount = 0
   container = Container()
   container\bind('Qux')\toType(Qux)\asTransient!
 
-  Assert.that(quxCount == 0)
+  Util.assert(quxCount == 0)
   qux = container\resolve('Qux')
-  Assert.that(quxCount == 1)
+  Util.assert(quxCount == 1)
   qux\bar!
 
   qux2 = container\resolve('Qux')
-  Assert.that(quxCount == 2)
-  Assert.isNotEqual(qux, qux2)
+  Util.assert(quxCount == 2)
+  Util.assert(qux != qux2)
 
 testManySingle = ->
   quxCount = 0
@@ -87,13 +87,14 @@ testManySingle = ->
   container\bind('Qux')\toType(Qux)\asSingle!
   container\bind('Qux')\toType(Qux)\asSingle!
 
-  Assert.throws(-> container\resolve('Qux'))
+  ok, value = pcall(-> container\resolve('Qux'))
+  Util.assert(not ok)
 
-  Assert.that(quxCount == 0)
+  Util.assert(quxCount == 0)
   quxes = container\resolveMany('Qux')
-  Assert.that(quxCount == 2)
+  Util.assert(quxCount == 2)
 
-  Assert.isEqual(#quxes, 2)
+  Util.assert(#quxes == 2)
 
   for q in *quxes
     q\bar!
@@ -109,7 +110,7 @@ testSingleArguments = ->
   container\bind('asdf')\toType(Gorp)\asSingle!\withArgs('test1')
 
   gorp = container\resolve('asdf')
-  Assert.isEqual(gorp.message, 'test1')
+  Util.assert(gorp.message == 'test1')
   gorp\pho!
 
 testTransientArguments = ->
@@ -117,7 +118,7 @@ testTransientArguments = ->
   container\bind('asdf')\toType(Gorp)\asTransient!\withArgs('test1')
 
   gorp = container\resolve('asdf')
-  Assert.isEqual(gorp.message, 'test1')
+  Util.assert(gorp.message == 'test1')
   gorp\pho!
 
 testFactory = ->
@@ -126,7 +127,7 @@ testFactory = ->
 
   factory = container\resolveFactory('asdf')
   gorp = factory('test1')
-  Assert.isEqual(gorp.message, 'test1')
+  Util.assert(gorp.message == 'test1')
   gorp\pho!
 
 testFactoryModule = ->
@@ -135,8 +136,8 @@ testFactoryModule = ->
 
   fooFactory = container\resolveFactory('Foo')
   foo = fooFactory('bob', 'joe')
-  Assert.that(foo.arg1 == 'bob')
-  Assert.that(foo.arg2 == 'joe')
+  Util.assert(foo.arg1 == 'bob')
+  Util.assert(foo.arg2 == 'joe')
 
 testSingle!
 testSingleMultipleIds!

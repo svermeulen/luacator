@@ -15,6 +15,13 @@ class Util
 
     return -1
 
+  assert: (condition, message) ->
+    if not condition
+      if message
+        error("Assert hit! #{message}")
+      else
+        error("Assert hit!")
+
   contains: (list, item) ->
     return Util.indexOf(list, item) != -1
 

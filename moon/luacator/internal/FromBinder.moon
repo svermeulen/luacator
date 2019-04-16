@@ -11,11 +11,11 @@ class FromBinder
     return ScopeBinder(@container, @identifiers, -> obj)
 
   toType: (objType) =>
-    Assert.that(type(objType) == 'table')
+    Util.assert(type(objType) == 'table')
     return ScopeBinder(@container, @identifiers, objType)
 
   toModule: (moduleName) =>
-    Assert.that(type(moduleName) == 'string')
+    Util.assert(type(moduleName) == 'string')
     return ScopeBinder @container, @identifiers, (...) ->
       runtimeArgs = {...}
       module = require(moduleName)

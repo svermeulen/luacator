@@ -9,7 +9,7 @@ class Container
     @identifierLookupsInProgress = {}
 
   bind: (...) =>
-    Assert.that(not @startedBinding)
+    Util.assert(not @startedBinding)
     @startedBinding = true
     return FromBinder(@, {...})
 
@@ -28,7 +28,7 @@ class Container
     return factory!
 
   _resolveInternal: (identifier, matchMany, asFactory) =>
-    Assert.that(not Util.contains(@identifierLookupsInProgress, identifier),
+    Util.assert(not Util.contains(@identifierLookupsInProgress, identifier),
       "Found circular dependency!  Object graph: #{@\_getObjectGraph!} -> #{identifier}")
 
     table.insert(@identifierLookupsInProgress, identifier)
@@ -43,10 +43,10 @@ class Container
 
           return [@\_processProvider(x, asFactory) for x in *providers]
 
-        Assert.that(providers,
+        Util.assert(providers,
           "Could not find dependency with identifier '#{identifier}'")
 
-        Assert.that(#providers == 1,
+        Util.assert(#providers == 1,
           "Found multiple providers when only one was expected for identifier '#{identifier}'")
 
         return @\_processProvider(providers[1], asFactory)
@@ -68,9 +68,9 @@ class Container
 
   registerProvider: (identifier, provider) =>
     -- Ignore this in case the binding calls it multiple times
-    --Assert.that(@startedBinding)
+    --Util.assert(@startedBinding)
     @startedBinding = false
-    Assert.that(identifier)
+    Util.assert(identifier)
 
     providers = @providerLists[identifier]
 

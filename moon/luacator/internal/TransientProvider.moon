@@ -1,3 +1,4 @@
+Util = require("luacator.internal.Util")
 
 class TransientProvider
   new: (action) =>
@@ -5,7 +6,7 @@ class TransientProvider
     @staticArgs = {}
 
   withArgs: (...) =>
-    Assert.that(#@staticArgs == 0)
+    Util.assert(#@staticArgs == 0)
     @staticArgs = {...}
 
   createInstance: (...) =>

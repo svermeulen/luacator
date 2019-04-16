@@ -1,5 +1,6 @@
 
 TransientProvider = require("luacator.internal.TransientProvider")
+Util = require("luacator.internal.Util")
 
 class SingletonProvider
   new: (action) =>
@@ -11,10 +12,10 @@ class SingletonProvider
 
   createInstance: (...) =>
     runtimeArgs = {...}
-    Assert.that(#runtimeArgs == 0, "Cannot have runtime arguments for singletons")
+    Util.assert(#runtimeArgs == 0, "Cannot have runtime arguments for singletons")
 
     if not @instance
       @instance = @provider\createInstance()
-      Assert.that(@instance)
+      Util.assert(@instance)
 
     return @instance
