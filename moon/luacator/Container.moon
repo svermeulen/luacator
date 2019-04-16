@@ -8,6 +8,19 @@ class Container
     @startedBinding = false
     @identifierLookupsInProgress = {}
 
+  _parseNameFromModule: (moduleName) =>
+    return moduleName\match('%.([^%.]*)$')
+
+  bindSingleModule: (moduleName, ...) =>
+    ids = {...}
+    table.insert(ids, @\_parseNameFromModule(moduleName))
+    @\bind(unpack(ids))\toModule(moduleName)\asSingle!
+
+  bindTransientModule: (moduleName, ...) =>
+    ids = {...}
+    table.insert(ids, @\_parseNameFromModule(moduleName))
+    @\bind(unpack(ids))\toModule(moduleName)\asTransient!
+
   bind: (...) =>
     Util.assert(not @startedBinding)
     @startedBinding = true

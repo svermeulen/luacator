@@ -19,6 +19,10 @@ container:bind('Qux'):toInstance(qux)
 container:bind('Qux', 'Gorp'):toType(Qux):asSingle()
 container:bind('asdf'):toType(Gorp):asTransient()
 container:bind('Foo'):toModule('luacator.Tests.Foo'):asSingle():withArgs('bob', 'joe')
+
+-- These work similarly to above but will derive the identifier name from module name
+container:bindSingleModule("Things.Foo")
+container:bindSingleModule("My.Custom.Directory.Foo", 'Bar', 'Qux')
 ```
 
 Resolve dependencies:
@@ -35,25 +39,17 @@ quxFactory = container:resolveFactory('Qux')
 
 Note that in this case it's only useful if it's transient
 
-Note that if you want to use this as service locator pattern you might want to make the container functions global:
+Note that if you want to use this as service locator pattern you might want to make the container instance global:
 
 ```lua
-export Resolve, ResolveMany, ResolveFactory, ResolveManyFactory, Bind
+export Container
 
-container = require("luacator.Container")()
-
-Bind = container.bind
-Resolve = container.resolve
-ResolveFactory = container.resolveFactory
-ResolveManyFactory = container.resolveManyFactory
-ResolveMany = container.resolveMany
+Container = require("luacator.Container")()
 ```
 
-Or just:
+Or you could directly expose all the container methods by executing
 
 ```lua
-require("luacator.Globals")
+require("luacator.AddGlobals")
 ```
-
-Which does the same thing
 
