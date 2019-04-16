@@ -49,3 +49,11 @@ ResolveManyFactory = container.resolveManyFactory
 ResolveMany = container.resolveMany
 ```
 
+Or just:
+
+```lua
+require("luacator.Globals")
+```
+
+Which does the same thing
+
