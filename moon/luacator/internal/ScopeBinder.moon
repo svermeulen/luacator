@@ -1,6 +1,6 @@
 
-TransientProvider = require("luacator.TransientProvider")
-SingletonProvider = require("luacator.SingletonProvider")
+TransientProvider = require("luacator.internal.TransientProvider")
+SingletonProvider = require("luacator.internal.SingletonProvider")
 
 class ScopeBinder
   new: (container, identifiers, factory) =>

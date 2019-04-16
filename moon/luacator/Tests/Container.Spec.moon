@@ -58,7 +58,7 @@ testInstance = ->
 
 testToModule = ->
   container = Container()
-  container\bind('Foo')\toModule('Ave.Ioc.Tests.Foo')\asSingle!\withArgs('bob', 'joe')
+  container\bind('Foo')\toModule('luacator.Tests.Foo')\asSingle!\withArgs('bob', 'joe')
 
   foo = container\resolve('Foo')
   Assert.that(foo.arg1 == 'bob')
@@ -131,7 +131,7 @@ testFactory = ->
 
 testFactoryModule = ->
   container = Container()
-  container\bind('Foo')\toModule('Ave.Ioc.Tests.Foo')\asTransient!
+  container\bind('Foo')\toModule('luacator.Tests.Foo')\asTransient!
 
   fooFactory = container\resolveFactory('Foo')
   foo = fooFactory('bob', 'joe')

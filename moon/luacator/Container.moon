@@ -1,11 +1,12 @@
 
-FromBinder = require("luacator.FromBinder")
+FromBinder = require("luacator.internal.FromBinder")
+Util = require("luacator.internal.Util")
 
 class Container
   new: =>
     @providerLists = {}
     @startedBinding = false
-    @identifierLookupsInProgress = Ave.Collections.List()
+    @identifierLookupsInProgress = {}
 
   bind: (...) =>
     Assert.that(not @startedBinding)
@@ -16,7 +17,7 @@ class Container
     return @providerLists[identifier] != nil
 
   _getObjectGraph: =>
-    return Ave.String.join(' -> ', @identifierLookupsInProgress.table)
+    return Util.join(' -> ', @identifierLookupsInProgress)
 
   _processProvider: (provider, asFactory) =>
     factory = provider\createInstance
@@ -27,12 +28,12 @@ class Container
     return factory!
 
   _resolveInternal: (identifier, matchMany, asFactory) =>
-    Assert.that(not @identifierLookupsInProgress\contains(identifier),
+    Assert.that(not Util.contains(@identifierLookupsInProgress, identifier),
       "Found circular dependency!  Object graph: #{@\_getObjectGraph!} -> #{identifier}")
 
-    @identifierLookupsInProgress\add(identifier)
+    table.insert(@identifierLookupsInProgress, identifier)
 
-    return Ave.Try
+    return Util.try
       do: ->
         providers = @providerLists[identifier]
 
@@ -51,7 +52,7 @@ class Container
         return @\_processProvider(providers[1], asFactory)
 
       finally: ->
-        @identifierLookupsInProgress\remove(identifier)
+        Util.remove(@identifierLookupsInProgress, identifier)
 
   resolveFactory: (identifier) =>
     @\_resolveInternal(identifier, false, true)

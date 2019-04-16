@@ -1,5 +1,5 @@
 
-TransientProvider = require("luacator.TransientProvider")
+TransientProvider = require("luacator.internal.TransientProvider")
 
 class SingletonProvider
   new: (action) =>

@@ -1,5 +1,6 @@
 
-ScopeBinder = require("luacator.ScopeBinder")
+ScopeBinder = require("luacator.internal.ScopeBinder")
+Util = require("luacator.internal.Util")
 
 class FromBinder
   new: (container, identifiers) =>
@@ -19,7 +20,7 @@ class FromBinder
       runtimeArgs = {...}
       module = require(moduleName)
       result = nil
-      Ave.Try
+      Util.try
         do: ->
           result = module(unpack(runtimeArgs))
         catch: (e) ->
