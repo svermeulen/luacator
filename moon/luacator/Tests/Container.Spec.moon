@@ -1,5 +1,5 @@
 
-Container = require("Ave.Ioc.Container")
+Container = require("luacator.Container")
 
 quxCount = 0
 

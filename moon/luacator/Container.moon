@@ -1,5 +1,5 @@
 
-FromBinder = require("Ave.Ioc.FromBinder")
+FromBinder = require("luacator.FromBinder")
 
 class Container
   new: =>

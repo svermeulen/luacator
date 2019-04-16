@@ -1,5 +1,5 @@
 
-ScopeBinder = require("Ave.Ioc.ScopeBinder")
+ScopeBinder = require("luacator.ScopeBinder")
 
 class FromBinder
   new: (container, identifiers) =>

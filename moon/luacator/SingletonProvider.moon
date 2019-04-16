@@ -1,5 +1,5 @@
 
-TransientProvider = require("Ave.Ioc.TransientProvider")
+TransientProvider = require("luacator.TransientProvider")
 
 class SingletonProvider
   new: (action) =>
